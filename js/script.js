@@ -62,15 +62,21 @@ $.ajax(
     method: "GET",
     success: function(data, state) {
       htmlDays(date)
+      //Variabile che rappresenta tutte le liste presenti nel tag ul con id month
       var listDayMonth = $("ul#month > li[data-list]")
+      //Variabile che rappresenta un Array fornitomi dall API con all'interno i giorni di vacanza del mese
       var dataArrayResponse = data.response;
+      //Ciclo ArrayResponse per vedere i valori delle chiavi degli oggetti contenuti in ArrayResponse
+      //Gli oggetti contenuti in questo Array indicano i giorni di vacanza del mese
+      //Le chiavi contenute in ciascun oggetto indicano la data del giorno di vacanza corrente e il tipo di festivita`
       for (var i = 0; i < dataArrayResponse.length; i++) {
         var dataObject = dataArrayResponse[i];
         var dateHoliday = dataObject.date;
         var nameHoliday = dataObject.name;
-        console.log("DATA: " + dateHoliday)
+        //console.log("DATA: " + dateHoliday)
+        //Controllo nella lista dei giorni del mese per verificare se ci sono giorni di vacanza ed eventualmente evidenziarli
         listDayMonth.each(function(){
-          console.log(this)
+          //console.log(this)
           var listAttribute = $(this).attr("data-list");
           if(listAttribute === dateHoliday) {
             $(this).addClass("red")
