@@ -73,7 +73,8 @@ $.ajax(
           console.log(this)
           var listAttribute = $(this).attr("data-list");
           if(listAttribute === dateHoliday) {
-            $(this).addClass("red");
+            $(this).addClass("red")
+            $(this).append("<span>" + nameHoliday + "</span>");
           }
         })
       }
