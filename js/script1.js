@@ -59,12 +59,12 @@ function daysInMonth (month) {
   //Variabile che rappresenta anno corrente formattato
   var yearFormat = month.format("YYYY");
 
+  //Creo un titolo che contiene il mese e l'anno
+  $(".container").append('<h2 data-title="' + month.format("YYYY-MM-DD") + '">' + monthFormat + " " + yearFormat + '</h2>')
   //Creo la ul che conterra i giorni del mese
   $(".container").append('<ul class="' + monthFormat + '"></ul>');
   //Variabile che rappresenta la ul che conterra` i giorni del mese
   var monthList = $("ul." + monthFormat);
-  //Creo un titolo che contiene il mese e l'anno
-  monthList.append('<h2 data-title="' + month.format("YYYY-MM-DD") + '">' + monthFormat + " " + yearFormat + '</h2>')
 
   //Faccio un ciclo di tutti i giorni in un mese e li stampo
   var count = 0;
@@ -84,7 +84,7 @@ function daysInMonth (month) {
     }else {
       dayWordFormat = "";
     }
-    
+
     //Variabile che rappresenta la data intera corrente formattata
     var monthDateFormat = month.format("YYYY-MM-DD");
 
@@ -110,7 +110,7 @@ function daysInMonth (month) {
 //Event month switch next
 $(document).on("click", ".btn_next", function(){
   //Variabile che indica il valore di attributo data-title
-  var currentDate = $("ul > h2").attr("data-title");
+  var currentDate = $(".container > h2").attr("data-title");
   //Trasformo currentDate in un oggetto Moment
   var momentCurrentDate = moment(currentDate);
   //Aggiungo un mese ad ogni click
@@ -118,6 +118,7 @@ $(document).on("click", ".btn_next", function(){
   //Se l'anno corrisponde al 2018 stampo il mese richiesto altrimenti "error"
   if (nextMonth.year() === 2018) {
     $(".container > ul").remove()
+    $(".container > h2").remove()
     holidaysInMonth(momentCurrentDate)
     daysInMonth (momentCurrentDate)
   }else {
@@ -129,7 +130,7 @@ $(document).on("click", ".btn_next", function(){
 // //Event month switch previous
 $(document).on("click", ".btn_previous", function(){
   //Variabile che indica il valore di attributo data-title
-  var currentDate = $("ul > h2").attr("data-title");
+  var currentDate = $(".container > h2").attr("data-title");
   //Trasformo currentDate in un oggetto Moment
   var momentCurrentDate = moment(currentDate);
   //Aggiungo un mese ad ogni click
@@ -137,6 +138,7 @@ $(document).on("click", ".btn_previous", function(){
   //Se l'anno corrisponde al 2018 stampo il mese richiesto altrimenti "error"
   if (nextMonth.year() === 2018) {
     $(".container > ul").remove()
+    $(".container > h2").remove()
     holidaysInMonth(momentCurrentDate)
     daysInMonth (momentCurrentDate)
   }else {
