@@ -4,7 +4,8 @@ $(document).ready(function(){
 
 //Moment
 var january2018 = moment("2018-01-01");
-
+var mia = moment("1989-11-01")
+console.log(mia)
 holidaysInMonth(january2018)
 daysInMonth (january2018)
 
@@ -79,7 +80,7 @@ function daysInMonth (month) {
 
     //Se e` domenica aggiungo classe red altrimenti nessuna classe
     //Passo la classe red attraverso oggetto Monday
-    if (dayWordFormat === "Monday") {
+    if (dayWordFormat === "Sunday") {
       dayWordFormat = "red";
     }else {
       dayWordFormat = "";
