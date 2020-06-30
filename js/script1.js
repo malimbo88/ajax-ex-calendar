@@ -23,7 +23,7 @@ function daysInMonth (month) {
   //Variabile che rappresenta la ul che conterra` i giorni del mese
   var monthList = $("ul." + monthFormat);
   //Creo un titolo che contiene il mese e l'anno
-  monthList.append('<h2 data-title="' + month.format("YYYY-mm-DD") + '">' + monthFormat + " " + yearFormat + '</h2>')
+  monthList.append('<h2 data-title="' + month.format("YYYY-MM-DD") + '">' + monthFormat + " " + yearFormat + '</h2>')
 
   //Faccio un ciclo di tutti i giorni in un mese e li stampo
   var count = 0;
@@ -34,7 +34,7 @@ function daysInMonth (month) {
     //Variabile che rappresenta il giorno corrente formattato
     var dayFormat = month.format("DD");
     //Variabile che rappresenta la data intera corrente formattata
-    var monthDateFormat = month.format("YYYY-mm-DD");
+    var monthDateFormat = month.format("YYYY-MM-DD");
 
     //oggetto contenete le chiavi che Hndelbars stampera`
     var context = {
@@ -50,7 +50,6 @@ function daysInMonth (month) {
     month.add(1, "days");
     count++
   }
-
 }
 //end Function daysInMonth
 
@@ -59,18 +58,23 @@ daysInMonth (january2018)
 
 //Event month switch next
 $(document).on("click", ".btn_next", function(){
-  //Variabile che indica il mese con classe visible
-
+  var currentDate = $("ul > h2").attr("data-title");
+  var momentCurrentDate = moment(currentDate);
+  var nextMonth = momentCurrentDate.add(1, "months");
+  $(".container > ul").remove()
+  daysInMonth (momentCurrentDate)
 });
 //end Event month switch next
 
 // //Event month switch previous
-// $(document).on("click", ".btn_previous", function(){
-//   //Variabile che indica il mese con classe visible
-//   var currentMonthSwitch = $("ul.visible");
-//   currentMonthSwitch.removeClass("visible");
-//   currentMonthSwitch.prev("ul").addClass("visible");
-// });
+$(document).on("click", ".btn_previous", function(){
+  var currentDate = $("ul > h2").attr("data-title");
+  var momentCurrentDate = moment(currentDate);
+  var nextMonth = momentCurrentDate.subtract(1, "months");
+  $(".container > ul").remove()
+  daysInMonth (momentCurrentDate)
+});
+
 // //end Event month switch previous
 
 
